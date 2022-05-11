@@ -1,0 +1,54 @@
+.todo-list {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+.todo-list > li {
+    background: #f3f3f4;
+    border-left: 6px solid #e7eaec;
+    border-right: 6px solid #e7eaec;
+    border-radius: 4px;
+    color: inherit;
+    margin-bottom: 2px;
+    padding: 10px;
+}
+.add-question:hover,
+.add-answer:hover{
+    background: rgb(241, 241, 241);
+}
+.add-question,
+.add-answer{
+    padding: 20px;
+    width: 100%;
+    font-size: 1rem;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    border: 1px dotted #1ab394;
+    font-weight: 600;
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+}
+.card-footer{
+    background-color: #fff !important;
+}
+.tools-answer{
+    margin-top: 5px;
+}
+.tools-answer .delete-answer{
+    background: none;
+    border: none;
+    outline: none;
+    transition: color .2s linear;
+    -webkit-transition: color .2s linear;
+    -moz-transition: color .2s linear;
+    -ms-transition: color .2s linear;
+    -o-transition: color .2s linear;
+}
+.tools-answer .delete-answer:hover{
+    color: #007bff;
+}

@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="card mt-3">
+        <div class="card-header">Danh sách sinh viên</div>
+        <div class="card-body">
+            <table class="table vertical-middle">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Học phí</th>
+                        <th>Vai trò</th>
+                        <th class="text-end">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="listStudents.length > 0">
+                    <tr *ngFor="let s of listStudents">
+                        <td><img [src]="s.avatar" style="width:100px;height:100px;object-fit:cover"></td>
+                        <td class="fw-bold">{{ s.fullname }}</td>
+                        <td class="fw-bold">{{ s.email }}</td>
+                        <td class="fw-bold">{{ s.schoolfee }}</td>
+                        <td class="fw-bold">{{ s.role }}</td>
+                        <td class="text-end">
+                            <a [routerLink]="'/admin/sinh-vien/edit/' + s.id" placement="top" ngbTooltip="Sửa" class="btn btn-primary btn-sm mr-1"><i class="fas fa-edit"></i></a>
+                            <button (click)="deleteStudent(s)" placement="top" ngbTooltip="Xóa" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

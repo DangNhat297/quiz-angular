@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="card mt-3">
+        <div class="card-header">Danh sách quiz</div>
+        <div class="card-body">
+            <div class="card card-primary" *ngFor="let q of listQuestions">
+                <div class="card-header fw-bold">{{ q.Text }}</div>
+                <div class="card-body">
+                    <ul class="todo-list">
+                        <li class="fw-bold" *ngFor="let a of q.Answers" [innerHTML]="getHTML(a, q.AnswerId)"></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-sm" (click)="editQuestion(q)" data-bs-toggle="modal" data-bs-target="#edit-question" placement="top" ngbTooltip="Sửa"><i
+                            class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger btn-sm ml-1" (click)="deleteQuestion(q.id)"><i class="fas fa-trash"
+                            placement="top" ngbTooltip="Xóa"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="add-question" (click)="addQuestion()" data-bs-toggle="modal" data-bs-target="#add-question"><i
+                    class="fas fa-plus-square"></i>
+                Thêm câu hỏi</button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="add-question" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form [formGroup]="question">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" class="form-control" formControlName="id" placeholder="ID auto" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Câu hỏi</label>
+                        <textarea rows="2" formControlName="Text" placeholder="Nhập câu hỏi..."
+                            class="form-control"></textarea>
+                    </div>
+                    <hr>
+                    <div class="form-group" *ngFor="let a of Answers.controls; index as i" formArrayName="Answers">
+                        <div [formGroupName]="i">
+                            <label>Câu trả lời {{ (i+1) }}</label>
+                            <textarea rows="2" placeholder="Nhập câu hỏi..." formControlName="Text"
+                                class="form-control">{{ a.get('Text') }}</textarea>
+                            <div class="d-flex justify-content-between tools-answer">
+                                <div class="form-check" [formGroup]="question">
+                                    <input class="form-check-input" type="radio" [value]="i"
+                                        [checked]="a.get('id')?.value == question.value.AnswerId" formControlName="IndexCorrect" name="IndexCorrect"
+                                        id="answer_{{i}}">
+                                    <label class="form-check-label" for="answer_{{i}}">
+                                        Đáp án
+                                    </label>
+                                </div>
+                                <button class="delete-answer" (click)="deleteAnswer(i)" [attr.data-index]="i"
+                                    placement="top" ngbTooltip="Xóa"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-answer" (click)="addAnswer()"><i class="fas fa-plus-square"></i> Thêm câu trả
+                        lời</button>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" (click)="saveQuestion()" data-bs-dismiss="modal">Lưu</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div *ngIf="question" class="modal fade" id="edit-question" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form [formGroup]="question">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" class="form-control" formControlName="id" placeholder="ID auto" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Câu hỏi</label>
+                        <textarea rows="2" formControlName="Text" placeholder="Nhập câu hỏi..."
+                            class="form-control"></textarea>
+                    </div>
+                    <hr>
+                    <div class="form-group" *ngFor="let a of Answers.controls; index as i" formArrayName="Answers">
+                        <div [formGroupName]="i">
+                            <label>Câu trả lời {{ (i+1) }}</label>
+                            <textarea rows="2" placeholder="Nhập câu hỏi..." formControlName="Text"
+                                class="form-control">{{ a.get('Text')?.value }}</textarea>
+                            <div class="d-flex justify-content-between tools-answer">
+                                <div class="form-check" [formGroup]="question">
+                                    <input class="form-check-input" type="radio" [value]="i"
+                                        [checked]="a.get('id')?.value == question.value.AnswerId" formControlName="IndexCorrect" name="IndexCorrect"
+                                        id="answer_edit_{{i}}">
+                                    <label class="form-check-label" for="answer_edit_{{i}}">
+                                        Đáp án
+                                    </label>
+                                </div>
+                                <button class="delete-answer" (click)="deleteAnswer(i)" [attr.data-index]="i"
+                                    placement="top" ngbTooltip="Xóa"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-answer" (click)="addAnswer()"><i class="fas fa-plus-square"></i> Thêm câu trả
+                        lời</button>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" (click)="saveQuestion()" data-bs-dismiss="modal">Lưu</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+  

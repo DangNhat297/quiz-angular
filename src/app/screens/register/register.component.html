@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-5 mt-5 shadow-sm p-0 rounded">
+            <div class="thumbnail">
+                <img src="https://tcd-theme.com/wp-content/uploads/2021/06/quiz-maker00.jpg" style="height: 200px;width:100%;object-fit:cover">
+            </div>
+            <form action="" [formGroup]="user" class="p-3" (submit)="register()">
+                <div class="form-group">
+                    <input type="text" formControlName="fullname" class="form-control" placeholder="Nhập họ tên">
+                    <div *ngIf="submitted && registerFormControl['fullname'].errors">
+                        <span class="text-danger" *ngIf="registerFormControl['fullname'].errors['required']">Vui lòng nhập họ tên</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" formControlName="email" class="form-control" placeholder="Email">
+                    <div *ngIf="submitted && registerFormControl['email'].errors">
+                        <span class="text-danger" *ngIf="registerFormControl['email'].errors['required']">Vui lòng nhập email</span>
+                        <span class="text-danger" *ngIf="registerFormControl['email'].errors['email']">Nhập sai định dạng email</span>
+                        <span class="text-danger" *ngIf="registerFormControl['email'].errors['exist']">Email đã tồn tại trên hệ thống</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" formControlName="password" class="form-control" placeholder="Mật khẩu">
+                    <div *ngIf="submitted && registerFormControl['password'].errors">
+                        <span class="text-danger" *ngIf="registerFormControl['password'].errors['required']">Vui lòng nhập mật khẩu</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formFile">Avatar</label>
+                    <input class="form-control"  type="file" id="formFile" (change)="uploadFile($event)" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="avatar" placeholder="Link ảnh..." readonly>
+                </div>
+                <button class="btn btn-primary btn-block">Đăng ký</button>
+                <p class="text-center mt-3">Hoặc</p>
+                <p class="text-center">Bạn đã có tài khoản? <a [routerLink]="'/login'">Đăng nhập</a></p>
+            </form>
+        </div>
+    </div>
+</div>

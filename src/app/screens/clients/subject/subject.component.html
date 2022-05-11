@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">Danh sách môn học</div>
+    <div class="card-body d-grid gap-3">
+        <!--start::Row-->
+        <div class="card p-2" *ngFor="let subject of listSubjects">
+            <div class="row g-0">
+                <div class="col-md-2">
+                    <a [routerLink]="'/quiz/' + subject.id">
+                        <img src="/assets/img/logos/{{ subject.Logo }}"
+                        class="img-fluid rounded-start">
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="">
+                            <h5 class="card-title">{{ subject.Name }}</h5>
+                        </a>
+                        <p class="card-text text-muted">@ {{ subject.Code }}</p>
+                        <a [routerLink]="'/quiz/' + subject.Code" class="btn btn-primary btn-sm"><i class="far fa-eye"></i> Làm quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Row-->
+    </div>
+</div>

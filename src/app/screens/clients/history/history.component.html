@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header">Kết quả quiz</div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Mã môn học</th>
+                    <th>Tên môn học</th>
+                    <th>Điểm</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="mySubject.length > 0">
+                <tr *ngFor="let s of mySubject">
+                    <td class="fw-bold">{{ s.Code }}</td>
+                    <td class="fw-bold">{{ s.Name }}</td>
+                    <td class="fw-bold">{{ s.score }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

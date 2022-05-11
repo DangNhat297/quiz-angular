@@ -1,0 +1,45 @@
+<div class="row mt-3">
+    <div class="col-md-12">
+
+        <div class="card card-widget widget-user">
+
+            <div class="widget-user-header bg-info">
+                <h3 class="widget-user-username">{{ user.fullname }}</h3>
+                <h5 class="widget-user-desc">{{ roles.join('-') }}</h5>
+            </div>
+            <div class="widget-user-image">
+                <img class="img-circle elevation-2" style="aspect-ratio:1/1;object-fit:cover" [src]="user.avatar" [alt]="user.fullname">
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">{{user.schoolfee}}</h5>
+                            <span class="description-text">Học phí</span>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">{{avgScore}}</h5>
+                            <span class="description-text">Điểm trung bình</span>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="description-block">
+                            <h5 class="description-header">{{score.length}}</h5>
+                            <span class="description-text">Quiz đã làm</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

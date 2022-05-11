@@ -1,0 +1,16 @@
+.box-answer{
+    /*margin: 10px;
+    */padding: 10px;
+    cursor: pointer;
+    transition: border .2s linear;
+    -webkit-transition: border .2s linear;
+    -moz-transition: border .2s linear;
+    -ms-transition: border .2s linear;
+    -o-transition: border .2s linear;
+}
+.box-answer:hover{
+    border-color: #007bff !important;
+}
+.box-answer.selected{
+    border-color: #007bff !important;
+}

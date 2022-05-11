@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">Làm quiz</div>
+    <div class="card-body">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" [destroyOnHide]="false">
+            <li *ngFor="let q of listQuestions; index as i" [ngbNavItem]="i + 1">
+              <a ngbNavLink>{{ i + 1 }}</a>
+              <ng-template ngbNavContent>
+                <p class="fw-bold mt-4 fs-6">Câu {{(i+1) + ': ' + q.Text }}</p>
+                <div class="row d-flex justify-content-between">
+                  <div *ngFor="let a of q.Answers" class="col-md-5 box-answer p-2 border border-secondary my-2">
+                    <div class="custom-control custom-radio">
+                      <input class="custom-control-input" (change)="selectAnswer(q.id, a.id)" name="{{ q.id }}" type="radio" id="customRadio{{ a.id }}">
+                      <label for="customRadio{{ a.id }}" class="custom-control-label">{{ a.Text }}</label>
+                      </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+          </ul>
+          
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          
+    </div>
+    <div class="card-footer d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="confirmQuiz()">Nộp bài</button>
+    </div>
+</div>
